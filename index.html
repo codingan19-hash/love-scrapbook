@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Little Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Bunga SVG (dipakai ulang di semua halaman, tidak perlu file PNG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="flower" viewBox="0 0 100 100">
+      <g fill="#F8BBD0" opacity=".9">
+        <ellipse cx="50" cy="26" rx="14" ry="22"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(72 50 50)"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(144 50 50)"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(216 50 50)"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="9" fill="#FFF8F5"/>
+    </symbol>
+  </svg>
+
+  <!-- Bunga dekorasi 4 pojok (di belakang teks) -->
+  <div class="corner tl"><svg><use href="#flower"/></svg></div>
+  <div class="corner tr"><svg><use href="#flower"/></svg></div>
+  <div class="corner bl"><svg><use href="#flower"/></svg></div>
+  <div class="corner br"><svg><use href="#flower"/></svg></div>
+
+  <button id="musicBtn" class="music-btn" aria-label="Putar musik">♪ Music</button>
+
+  <!-- 1. LANDING PAGE -->
+  <section id="landing" class="screen active">
+    <div class="center">
+      <h1 class="script">Our Little Story</h1>
+      <p class="tagline">Untuk seseorang yang membuat hari-hari biasa terasa jauh lebih istimewa.</p>
+      <p class="small">16 halaman kecil, berisi begitu banyak cerita tentang kita.</p>
+      <button id="openBtn" class="btn">OPEN OUR STORY ♡</button>
+    </div>
+  </section>
+
+  <!-- 2. SCRAPBOOK (diisi oleh script.js) -->
+  <section id="book" class="screen">
+    <button id="homeBtn" class="home-btn" aria-label="Kembali ke halaman utama">♡</button>
+    <div id="page" class="page"></div>
+    <nav class="nav">
+      <button id="prevBtn" class="btn small-btn">← Previous</button>
+      <span id="counter">Page 01 / 16</span>
+      <button id="nextBtn" class="btn small-btn">Next →</button>
+    </nav>
+  </section>
+
+  <!-- 3. HALAMAN PENUTUP -->
+  <section id="closing" class="screen">
+    <div class="center closing-box">
+      <h2 class="script">And this isn't the end...</h2>
+      <div id="closingText" class="letter"></div>
+      <button id="againBtn" class="btn">Read Again ♡</button>
+    </div>
+  </section>
+
+ <audio id="music" src="music/nadif-sound.mp3" loop preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+/* ===== Warna & font ===== */
+:root {
+  --pink: #F8BBD0;
+  --pink-dark: #c9708f;   /* versi lebih tua dari pink agar teks terbaca */
+  --cream: #FFF8F5;
+  --ink: #5a3d46;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--ink);
+  background: var(--cream);
+  /* tekstur kertas halus */
+  background-image: radial-gradient(rgba(248,187,208,.18) 1px, transparent 1px);
+  background-size: 18px 18px;
+  overflow-x: hidden;
+}
+.script { font-family: "Great Vibes", cursive; font-weight: 400; color: var(--pink-dark); }
+
+/* ===== Bunga pojok ===== */
+.corner { position: fixed; width: clamp(80px, 18vw, 190px); z-index: 0; pointer-events: none; opacity: .75; }
+.corner svg { width: 100%; height: 100%; aspect-ratio: 1; display: block; }
+.tl { top: -25px; left: -25px; animation: sway 9s ease-in-out infinite; }
+.tr { top: -25px; right: -25px; animation: sway 11s ease-in-out infinite reverse; }
+.bl { bottom: -25px; left: -25px; animation: sway 12s ease-in-out infinite reverse; }
+.br { bottom: -25px; right: -25px; animation: sway 10s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform: rotate(-6deg) translateY(0); } 50% { transform: rotate(6deg) translateY(8px); } }
+
+/* ===== Layar ===== */
+.screen { position: fixed; inset: 0; z-index: 1; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+.screen.active { display: flex; animation: fadeIn 1.2s ease both; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.center { text-align: center; max-width: 560px; width: 100%; margin: auto; padding: 24px 12px; }
+#landing h1 { font-size: clamp(3rem, 12vw, 5.5rem); line-height: 1.1; margin-bottom: 18px; }
+.tagline { font-style: italic; font-size: clamp(1rem, 3.5vw, 1.25rem); line-height: 1.7; margin-bottom: 14px; }
+.small { font-size: .9rem; opacity: .75; margin-bottom: 30px; }
+
+/* ===== Tombol ===== */
+.btn { font-family: inherit; background: var(--pink); color: var(--ink); border: none; border-radius: 30px; padding: 14px 30px; font-size: 1rem; letter-spacing: .08em; cursor: pointer; box-shadow: 0 4px 14px rgba(201,112,143,.3); transition: transform .3s, box-shadow .3s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(201,112,143,.35); }
+.btn:focus-visible, .music-btn:focus-visible, .home-btn:focus-visible { outline: 2px solid var(--pink-dark); outline-offset: 3px; }
+.small-btn { padding: 10px 18px; font-size: .9rem; letter-spacing: 0; }
+.btn[disabled] { opacity: .35; cursor: default; transform: none; box-shadow: none; }
+.music-btn { position: fixed; top: 12px; right: 12px; z-index: 5; background: var(--cream); border: 1px solid var(--pink); border-radius: 20px; padding: 6px 14px; font-family: inherit; color: var(--pink-dark); cursor: pointer; }
+.music-btn.on { background: var(--pink); color: var(--ink); }
+.home-btn { position: fixed; top: 12px; left: 12px; z-index: 5; background: none; border: none; font-size: 1.6rem; color: var(--pink-dark); cursor: pointer; }
+
+/* ===== Halaman scrapbook ===== */
+#book { justify-content: flex-start; padding-top: 52px; }
+.page { position: relative; width: 100%; max-width: 980px; margin: auto; background: #fffdfb; border-radius: 4px; padding: 28px 20px 30px; text-align: center;
+  box-shadow: 0 10px 30px rgba(120,70,85,.18), inset 0 0 40px rgba(248,187,208,.18);
+  background-image: radial-gradient(rgba(201,112,143,.07) 1px, transparent 1px); background-size: 14px 14px; }
+.page.in-next { animation: slideNext 1s ease both; }
+.page.in-prev { animation: slidePrev 1s ease both; }
+@keyframes slideNext { from { opacity: 0; transform: translateX(40px) rotate(1deg); } to { opacity: 1; transform: none; } }
+@keyframes slidePrev { from { opacity: 0; transform: translateX(-40px) rotate(-1deg); } to { opacity: 1; transform: none; } }
+.page-no { font-size: .85rem; letter-spacing: .25em; opacity: .6; }
+.page h2 { font-family: "Great Vibes", cursive; font-weight: 400; color: var(--pink-dark); font-size: clamp(2.2rem, 7vw, 3.2rem); margin: 4px 0 18px; }
+
+/* Foto ditempel miring seperti scrapbook */
+.photos { display: flex; justify-content: center; align-items: center; gap: 4%; margin: 10px 0 26px; }
+.photo { position: relative; width: 29%; background: #fff; padding: 2.5% 2.5% 7%; box-shadow: 0 6px 16px rgba(90,61,70,.25); opacity: 0; animation: photoIn 1.3s ease forwards; }
+.photo img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; background: var(--pink); }
+.photo:nth-child(1) { transform: rotate(-5deg); animation-delay: .3s; }
+.photo:nth-child(2) { width: 34%; transform: scale(1) rotate(1deg); animation-delay: .7s; z-index: 2; }
+.photo:nth-child(3) { transform: rotate(5deg); animation-delay: 1.1s; }
+@keyframes photoIn { from { opacity: 0; margin-top: 14px; } to { opacity: 1; margin-top: 0; } }
+/* selotip */
+.photo::before { content: ""; position: absolute; top: -10px; left: 50%; width: 46%; height: 20px; transform: translateX(-50%) rotate(-3deg); background: rgba(248,187,208,.75); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.photo:nth-child(2)::before { transform: translateX(-50%) rotate(2deg); }
+
+.quote { font-style: italic; font-size: clamp(1rem, 3.6vw, 1.35rem); line-height: 1.8; max-width: 560px; margin: 0 auto 8px; }
+.doodle { color: var(--pink-dark); letter-spacing: .6em; margin-top: 10px; opacity: .8; }
+
+/* ===== Navigasi ===== */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; max-width: 980px; margin: 18px auto 12px; font-size: .9rem; }
+
+/* ===== Penutup ===== */
+.closing-box h2 { font-size: clamp(2.4rem, 9vw, 3.8rem); margin-bottom: 20px; }
+.letter { background: #fffdfb; padding: 26px 22px; box-shadow: 0 8px 24px rgba(120,70,85,.18); line-height: 1.9; margin-bottom: 24px; text-align: left; }
+.letter p { margin-bottom: 14px; }
+.letter .sign { font-family: "Great Vibes", cursive; font-size: 1.8rem; color: var(--pink-dark); text-align: right; }
+
+/* ===== HP kecil ===== */
+@media (max-width: 480px) {
+  .page { padding: 22px 10px 24px; }
+  .photo { padding-bottom: 9%; }
+  .nav .btn { padding: 9px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01s !important; } }
